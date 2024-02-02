@@ -15,9 +15,9 @@ const TaskListComponent: React.FC = () => {
     { id: 2, title: 'Task 2', priority: 'low', completed: true },
   ]);
 
-  const [filter, setFilter] = useState<{ priorityFilter?: string; completionFilter?: boolean }>({});
+  const [filter, setFilter] = useState<{ priorityFilter?: string; completionFilter?: boolean|string  }>({});
 
-  const handleFilterChange = (newFilter: { priorityFilter?: string; completionFilter?: boolean }) => {
+  const handleFilterChange = (newFilter: { priorityFilter?: string; completionFilter?: boolean|string}) => {
     setFilter(newFilter);
   };
 
@@ -26,25 +26,27 @@ const TaskListComponent: React.FC = () => {
   };
 
   const filteredTasks = tasks.filter((task) => {
-    if (filter.priorityFilter && task.priority !== filter.priorityFilter) {
+    console.log(filter);
+  
+    if (filter.priorityFilter && task.priority !== filter.priorityFilter) 
+      return false;
+    
+    if (filter.completionFilter !== undefined  && filter.completionFilter !== 'all' && task.completed !== filter.completionFilter) {
       return false;
     }
 
-    if (
-      typeof filter.completionFilter !== 'undefined' &&
-      task.completed !== filter.completionFilter
-    ) {
-      return false;
-    }
-
+    
     return true;
   });
 
   return (
     <div>
+           <AddTaskComponent onAddTask={handleAddTask} />
+           <hr/>
+           <hr/>
       <h2>Task List</h2>
       <FilterComponent onFilterChange={handleFilterChange} />
-      <AddTaskComponent onAddTask={handleAddTask} />
+  
 
       <ul>
         {filteredTasks.map((task) => (
@@ -53,6 +55,7 @@ const TaskListComponent: React.FC = () => {
           </li>
         ))}
       </ul>
+
     </div>
   );
 };

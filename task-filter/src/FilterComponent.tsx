@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 
 interface FilterProps {
-  onFilterChange: (filters: { priorityFilter?: string; completionFilter?: boolean }) => void;
+  onFilterChange: (filters: { priorityFilter?: string; completionFilter?: boolean|string }) => void;
 }
 
 const FilterComponent: React.FC<FilterProps> = ({ onFilterChange }) => {
@@ -11,9 +11,18 @@ const FilterComponent: React.FC<FilterProps> = ({ onFilterChange }) => {
   };
 
   const handleCompletionChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const completionFilter = e.target.value === 'true';
-    onFilterChange({ completionFilter });
-  };
+    let completionFilter: boolean |string;
+
+  if (e.target.value === "true") {
+    completionFilter = true;
+  } else if (e.target.value === "false") {
+    completionFilter = false;
+  } else {
+    completionFilter = 'all';
+  }
+
+  onFilterChange({ completionFilter });
+};
 
   return (
     <div>
