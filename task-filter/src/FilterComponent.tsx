@@ -23,10 +23,9 @@ const FilterComponent: React.FC<FilterProps> = ({ onFilterChange }) => {
 
   onFilterChange({ completionFilter });
 };
-
   return (
     <div>
-      <h2>Filter Tasks</h2>
+      <h2>Filter Tasks- one parameter at a time</h2>
       <label>
         Priority:
         <select onChange={handlePriorityChange}>

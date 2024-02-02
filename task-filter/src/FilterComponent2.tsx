@@ -31,7 +31,7 @@ const FilterComponent: React.FC<FilterProps> = ({ onFilterChange }) => {
 
   return (
     <div>
-      <h2>Filter Tasks</h2>
+      <h2>Filter Tasks-2 parameters same time</h2>
       <label>
         Priority:
         <select onChange={handlePriorityChange} value={priorityFilter}>
@@ -41,7 +41,6 @@ const FilterComponent: React.FC<FilterProps> = ({ onFilterChange }) => {
           <option value="low">Low</option>
         </select>
       </label>
-
       <label>
         Completion Status:
         <select onChange={handleCompletionChange} value={completionFilter.toString()}>

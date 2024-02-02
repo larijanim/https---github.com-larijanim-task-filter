@@ -3,25 +3,25 @@ import React, { useState, ChangeEvent } from 'react';
 interface AddTaskProps {
   onAddTask: (newTask: Task) => void;
 }
-
+// to fix this I need to put task interface in seprated file and import it to what ever component needed it
 const AddTaskComponent: React.FC<AddTaskProps> = ({ onAddTask }) => {
-  const [newTask, setNewTask] = useState({ title: '', priority: 'low', completed: false });
+const [newTask, setNewTask] = useState({ title: '', priority: 'low', completed: false });
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
 
     setNewTask((prevTask) => ({
       ...prevTask,
       [name]: type === 'checkbox' ? (value === 'true' ? true : false) : value,
     }));
-  };
+};
 
-  const handleAddTask = () => {
-    onAddTask({ ...newTask, id: Date.now() });
-    setNewTask({ title: '', priority: 'low', completed: false });
-  };
+const handleAddTask = () => {
+onAddTask({ ...newTask, id: Date.now() });
+setNewTask({ title: '', priority: 'low', completed: false });
+};
 
-  return (
+return (
     <div>
       <h2>Add Task</h2>
       <label>
