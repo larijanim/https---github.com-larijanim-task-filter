@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import FilterComponent from './FilterComponent';
+import FilterComponent2 from './FilterComponent2';
 import AddTaskComponent from './AddTaskComponent';
+import FilterComponent from './FilterComponent';
 
 interface Task {
   id: number;
@@ -45,6 +46,8 @@ const TaskListComponent: React.FC = () => {
            <hr/>
            <hr/>
       <h2>Task List</h2>
+      <FilterComponent2 onFilterChange={handleFilterChange} />
+      <p> check one parameter at a time</p>
       <FilterComponent onFilterChange={handleFilterChange} />
   
 
@@ -55,7 +58,7 @@ const TaskListComponent: React.FC = () => {
           </li>
         ))}
       </ul>
-
+      
     </div>
   );
 };
